@@ -1,0 +1,114 @@
+<?php
+
+include "../classes/hotel.php";
+
+$hotel = new Hotel;
+
+$room_id = $_GET['room_id'];
+$guest_id = $_GET['guest_id'];
+
+$room_info=$hotel->getRoom($room_id);
+$guest_info=$hotel->getGuestInfo($guest_id);
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Confirmation Page</title>
+        <!-- Boostrap -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    
+    <body>
+        <!-- Responsive Navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <div class="container">
+                <a class="navbar-brand" href="../views/home.php"><i class="fa-solid fa-tree"></i></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-nav" aria-controls="navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                    <div class="collapse navbar-collapse" id="navbar-nav">
+                        <ul class="navbar-nav ms-auto mb-lg-0" style="font-family:serif">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="../views/room-list.php">Room & Suites</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="../views/contact-us.php">Contact Us</a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <div class="bg-image pt-5 mb-5 text-center text-white img-fluid" style="background-image: url(../assets/home/bg-home.jpeg); height: 200px;">
+            <h1 class="mb-3 pt-5 fs-1 fw-bolder" style="font-family:serif">THANK YOU FOR BOOKING!</h1>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <p class="fs-3 text-center fw-bold mb-2" style="font-family:serif">ITINERARY FOR: <?= $guest_info['first_name']?> <?= $guest_info['last_name']?></p>
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <p class="fs-6 text-end mb-2" style="font-family:serif">Check In Date: <?= $guest_info['ci_date'] ?></p>
+                </div>
+                <div class="col-6">
+                <p class="fs-6 text-start mb-2" style="font-family:serif">Check Out Date: <?= $guest_info['co_date'] ?></p>
+                </div>
+            </div>
+
+            <div class="row">
+                <p class="fs-5 text-center mb-4" style="font-family:serif">Room Type: <?= $room_info['room_type']?></p>
+            </div>
+
+            <div class="row">
+                <p class="fs-6 text-center mb-2" style="font-family:serif">
+                    Thank you for choosing Hotel Simple & Nature.
+                    <br>
+                    For any assistance prior to your arrival, please feel free to reach out to us!
+                    <br>
+                    See you soon!
+                    <br>    
+                    <a href="../views/contact-us.php" class="btn btn-outline-dark mt-4 mb-5" style="font-family:serif">CONTACT US</a>
+                </p>
+            </div>
+        </div>
+
+
+         <!-- Footer-->
+         <footer class="py-5 bg-white border-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="m-0 text-center text-dark fs-1"><i class="fa-solid fa-tree"></i></p>
+                        <p class="m-0 text-center text-dark fs-6" style="font-family:serif">Hotel</p>
+                        <p class="m-0 text-center text-dark fs-6" style="font-family:serif">Simple & Nature</p>
+                    </div>
+
+                    <div class="col-4">
+                        <p class="m-0 text-center text-dark fs-5 fw-bold" style="font-family:serif">ADDRESS</p>
+                        <p class="m-0 text-center text-dark fs-6" style="font-family:serif">Tokyo, Japan</p>
+                    </div>
+
+                    <div class="col-4">
+                        <p class="m-0 text-center text-dark fs-5 fw-bold" style="font-family:serif">CONTACT US</p>
+                        <p class="m-0 text-center text-dark fs-6" style="font-family:serif">+81 03-1234-5678</p>
+                        <p class="m-0 text-center text-dark fs-6" style="font-family:serif">contact@simpleandnature.com</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+       
+    </body>
+</html>
